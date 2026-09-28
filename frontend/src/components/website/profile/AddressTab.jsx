@@ -158,24 +158,24 @@ export default function AddressTab() {
   // =========================
   if (loading) {
     return (
-      <div className="flex min-h-[280px] items-center justify-center">
+      <div className="flex min-h-[220px] w-full items-center justify-center sm:min-h-[280px]">
         <Loader2
-          size={24}
-          className="animate-spin text-[#5C4A3A]"
+          size={22}
+          className="animate-spin text-[#5C4A3A] sm:h-6 sm:w-6"
         />
       </div>
     );
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full min-w-0">
 
       {/* =========================
           HEADER
       ========================= */}
-      <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mb-5 flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 
-        <div>
+        <div className="min-w-0">
           <h3 className="text-base font-semibold text-stone-900">
             Saved Addresses
           </h3>
@@ -195,7 +195,7 @@ export default function AddressTab() {
               setShowForm(true);
             }
           }}
-          className="inline-flex h-9 items-center justify-center rounded-lg bg-[#5C4A3A] px-4 text-xs font-semibold text-white transition hover:bg-[#493a2e] active:scale-[0.98]"
+          className="inline-flex h-9 w-full items-center justify-center rounded-lg bg-[#5C4A3A] px-4 text-xs font-semibold text-white transition hover:bg-[#493a2e] active:scale-[0.98] sm:w-auto"
         >
           {showForm ? "Close Form" : "+ Add Address"}
         </button>
@@ -206,7 +206,7 @@ export default function AddressTab() {
           ADDRESS FORM
       ========================= */}
       {showForm && (
-        <div className="mb-5">
+        <div className="mb-5 w-full min-w-0">
           <AddressForm
             editingAddress={editingAddress}
             onAddressAdded={handleAddressAdded}
@@ -219,10 +219,10 @@ export default function AddressTab() {
           EMPTY STATE
       ========================= */}
       {addresses.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-stone-300 bg-stone-50 px-5 py-10 text-center">
+        <div className="rounded-xl border border-dashed border-stone-300 bg-stone-50 px-4 py-8 text-center sm:px-5 sm:py-10">
 
-          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white text-stone-500 shadow-sm">
-            <MapPin size={21} />
+          <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-white text-stone-500 shadow-sm sm:h-12 sm:w-12">
+            <MapPin size={20} className="sm:h-[21px] sm:w-[21px]" />
           </div>
 
           <h3 className="text-sm font-semibold text-stone-800">
@@ -241,7 +241,7 @@ export default function AddressTab() {
                 setEditingAddress(null);
                 setShowForm(true);
               }}
-              className="mt-4 rounded-lg border border-stone-300 bg-white px-4 py-2 text-xs font-semibold text-stone-800 transition hover:border-[#5C4A3A]"
+              className="mt-4 w-full rounded-lg border border-stone-300 bg-white px-4 py-2 text-xs font-semibold text-stone-800 transition hover:border-[#5C4A3A] sm:w-auto"
             >
               Add Your First Address
             </button>
@@ -253,7 +253,7 @@ export default function AddressTab() {
         /* =========================
            ADDRESS CARDS
         ========================= */
-        <div className="grid grid-cols-1 gap-3 xl:grid-cols-2">
+        <div className="grid min-w-0 grid-cols-1 gap-3 xl:grid-cols-2">
 
           {addresses.map((item, index) => {
             const Icon =
@@ -262,20 +262,21 @@ export default function AddressTab() {
             return (
               <div
                 key={item._id}
-                className="rounded-xl border border-stone-200 bg-white p-4 transition hover:border-stone-300 hover:shadow-sm"
+                className="min-w-0 rounded-xl border border-stone-200 bg-white p-3.5 transition hover:border-stone-300 hover:shadow-sm sm:p-4"
               >
 
                 {/* =========================
                     CARD HEADER
                 ========================= */}
-                <div className="flex items-start justify-between gap-3">
+                <div className="flex min-w-0 items-start justify-between gap-2.5 sm:gap-3">
 
                   <div className="flex min-w-0 items-center gap-2.5">
 
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-stone-100 text-stone-700">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-stone-100 text-stone-700 sm:h-9 sm:w-9">
                       <Icon
-                        size={16}
+                        size={15}
                         strokeWidth={1.75}
+                        className="sm:h-4 sm:w-4"
                       />
                     </div>
 
@@ -284,7 +285,7 @@ export default function AddressTab() {
                         {item.fullName}
                       </h3>
 
-                      <p className="mt-0.5 text-xs text-stone-500">
+                      <p className="mt-0.5 truncate text-xs text-stone-500">
                         {item.mobile}
                       </p>
                     </div>
@@ -292,7 +293,7 @@ export default function AddressTab() {
                   </div>
 
                   {item.isDefault && (
-                    <span className="shrink-0 rounded-full bg-[#5C4A3A] px-2.5 py-1 text-[10px] font-semibold text-white">
+                    <span className="shrink-0 rounded-full bg-[#5C4A3A] px-2 py-1 text-[9px] font-semibold text-white sm:px-2.5 sm:text-[10px]">
                       Default
                     </span>
                   )}
@@ -302,13 +303,13 @@ export default function AddressTab() {
                 {/* =========================
                     ADDRESS
                 ========================= */}
-                <div className="mt-3 rounded-lg bg-stone-50 p-3">
+                <div className="mt-3 rounded-lg bg-stone-50 p-2.5 sm:p-3">
 
-                  <p className="text-xs leading-5 text-stone-700">
+                  <p className="break-words text-xs leading-5 text-stone-700">
                     {item.addressLine}
                   </p>
 
-                  <p className="mt-0.5 text-xs leading-5 text-stone-700">
+                  <p className="mt-0.5 break-words text-xs leading-5 text-stone-700">
                     {item.city}, {item.state} -{" "}
                     {item.pincode}
                   </p>
@@ -319,15 +320,15 @@ export default function AddressTab() {
 
                 </div>
 
-                {/* ACTIONS */}
-                <div className="mt-3 flex flex-wrap items-center gap-3 border-t border-stone-100 pt-3">
+                {/* =========================
+                    ACTIONS
+                ========================= */}
+                <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-stone-100 pt-3">
 
                   {/* EDIT */}
                   <button
                     type="button"
-                    onClick={() =>
-                      handleEdit(item)
-                    }
+                    onClick={() => handleEdit(item)}
                     disabled={actionLoading}
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-700 transition hover:text-stone-900 disabled:opacity-50"
                   >
@@ -373,3 +374,4 @@ export default function AddressTab() {
     </div>
   );
 }
+

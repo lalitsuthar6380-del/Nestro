@@ -104,7 +104,7 @@ export default function AccountSidebar({
   };
 
   return (
-    <aside className="w-full shrink-0 space-y-3 lg:w-[176px]">
+    <aside className="w-full min-w-0 shrink-0 space-y-3 lg:w-[176px]">
 
       {/* =====================================
           ACCOUNT CARD
@@ -114,7 +114,7 @@ export default function AccountSidebar({
         {/* =====================================
             USER INFORMATION
         ====================================== */}
-        <div className="px-3 py-3">
+        <div className="px-3 py-3 sm:px-4 md:px-4 lg:px-3">
           <div className="flex items-center gap-3">
 
             {/* AVATAR */}
@@ -146,33 +146,50 @@ export default function AccountSidebar({
         ====================================== */}
         <nav className="p-1.5">
 
-          <ul className="space-y-0.5">
-            {navItems.map(({ id, label, icon: Icon }) => {
-              const active = activeTab === id;
+          {/* 
+            Mobile + Tablet:
+            Horizontal scroll navigation
 
-              return (
-                <li key={id}>
-                  <button
-                    type="button"
-                    onClick={() => handleTabChange(id)}
-                      className={`flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-[11px] transition-all duration-200 ${
-                      active
-                        ? "bg-[#5C4A3A] font-medium text-white shadow-sm"
-                        : "text-stone-700 hover:bg-stone-100 hover:text-stone-900"
-                    }`}
+            Desktop:
+            Normal vertical navigation
+          */}
+          <div className="overflow-x-auto scrollbar-none lg:overflow-visible">
+
+            <ul className="flex min-w-max gap-1 lg:block lg:min-w-0 lg:space-y-0.5">
+
+              {navItems.map(({ id, label, icon: Icon }) => {
+                const active = activeTab === id;
+
+                return (
+                  <li
+                    key={id}
+                    className="shrink-0 lg:block"
                   >
-                    <Icon
-                      size={18}
-                      strokeWidth={1.7}
-                      className="shrink-0"
-                    />
+                    <button
+                      type="button"
+                      onClick={() => handleTabChange(id)}
+                      className={`flex items-center justify-center gap-1.5 rounded-lg px-3 py-2.5 text-[11px] transition-all duration-200 sm:px-4 md:px-4 lg:w-full lg:justify-start lg:px-2.5 lg:py-2 ${
+                        active
+                          ? "bg-[#5C4A3A] font-medium text-white shadow-sm"
+                          : "text-stone-700 hover:bg-stone-100 hover:text-stone-900"
+                      }`}
+                    >
+                      <Icon
+                        size={17}
+                        strokeWidth={1.7}
+                        className="shrink-0"
+                      />
 
-                    <span>{label}</span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+                      <span className="whitespace-nowrap">
+                        {label}
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
+
+            </ul>
+          </div>
 
           {/* =====================================
               LOGOUT
@@ -182,10 +199,10 @@ export default function AccountSidebar({
             <button
               type="button"
               onClick={handleLogout}
-              className="flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-[11px] font-medium text-red-600 transition-all duration-200 hover:bg-red-50"
+              className="flex w-full items-center justify-center gap-2 rounded-lg px-2.5 py-2.5 text-[11px] font-medium text-red-600 transition-all duration-200 hover:bg-red-50 lg:justify-start lg:py-2"
             >
               <LogOut
-                size={18}
+                size={17}
                 strokeWidth={1.7}
                 className="shrink-0"
               />
@@ -201,7 +218,7 @@ export default function AccountSidebar({
       {/* =====================================
           PROMO CARD
       ====================================== */}
-      <div className="relative h-[272px] overflow-hidden rounded-xl bg-stone-200">
+      <div className="relative hidden h-[272px] overflow-hidden rounded-xl bg-stone-200 lg:block">
 
         <img
           src="https://images.unsplash.com/photo-1567016432779-094069958ea5?q=80&w=600&auto=format&fit=crop"
@@ -254,3 +271,4 @@ export default function AccountSidebar({
     </aside>
   );
 }
+

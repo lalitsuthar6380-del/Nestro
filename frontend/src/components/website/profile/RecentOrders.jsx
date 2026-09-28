@@ -55,25 +55,26 @@ export default function RecentOrders() {
   };
 
   return (
-    <section className="w-full rounded-2xl bg-white p-4 shadow-sm">
+    <section className="w-full min-w-0 rounded-2xl bg-white p-3 shadow-sm sm:p-4">
 
       {/* Header */}
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-4 flex min-w-0 items-center justify-between gap-3">
 
-        <div className="flex items-center gap-2.5">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#5C4A3A] text-white">
+        <div className="flex min-w-0 items-center gap-2.5">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#5C4A3A] text-white sm:h-9 sm:w-9">
             <ShoppingBag
-              size={16}
+              size={15}
               strokeWidth={1.8}
+              className="sm:h-4 sm:w-4"
             />
           </div>
 
-          <div>
-            <h2 className="text-sm font-semibold text-stone-900">
+          <div className="min-w-0">
+            <h2 className="truncate text-sm font-semibold text-stone-900">
               Recent Orders
             </h2>
 
-            <p className="mt-0.5 text-[10px] text-stone-500">
+            <p className="mt-0.5 truncate text-[10px] text-stone-500">
               Your latest purchases.
             </p>
           </div>
@@ -81,7 +82,7 @@ export default function RecentOrders() {
 
         <button
           type="button"
-          className="inline-flex items-center gap-1 text-[10px] font-semibold text-stone-700 transition hover:text-black"
+          className="inline-flex shrink-0 items-center gap-1 text-[10px] font-semibold text-stone-700 transition hover:text-black"
         >
           View All
           <ArrowRight size={12} />
@@ -91,18 +92,18 @@ export default function RecentOrders() {
 
       {/* Loading */}
       {loading && (
-        <div className="flex items-center justify-center py-8 text-xs text-stone-500">
+        <div className="flex min-h-[100px] items-center justify-center px-2 py-8 text-xs text-stone-500">
           <Loader2
             size={16}
-            className="mr-2 animate-spin"
+            className="mr-2 shrink-0 animate-spin"
           />
-          Loading orders...
+          <span>Loading orders...</span>
         </div>
       )}
 
       {/* Empty State */}
       {!loading && orders.length === 0 && (
-        <div className="rounded-xl border border-dashed border-stone-200 py-8 text-center">
+        <div className="rounded-xl border border-dashed border-stone-200 px-3 py-7 text-center sm:py-8">
 
           <ShoppingBag
             size={26}
@@ -122,7 +123,7 @@ export default function RecentOrders() {
 
       {/* Orders */}
       {!loading && orders.length > 0 && (
-        <div className="grid grid-cols-1 gap-2.5 md:grid-cols-3">
+        <div className="grid min-w-0 grid-cols-1 gap-2.5 md:grid-cols-2 lg:grid-cols-3">
 
           {orders.map((order) => {
             const firstItem = order.items?.[0];
@@ -147,11 +148,11 @@ export default function RecentOrders() {
             return (
               <div
                 key={order._id}
-                className="rounded-xl border border-stone-200 p-3"
+                className="min-w-0 rounded-xl border border-stone-200 p-3"
               >
 
                 {/* Product */}
-                <div className="flex items-center gap-2.5">
+                <div className="flex min-w-0 items-center gap-2.5">
 
                   <img
                     src={image}
@@ -175,10 +176,10 @@ export default function RecentOrders() {
                 <div className="my-2.5 border-t border-stone-100" />
 
                 {/* Bottom */}
-                <div className="flex items-end justify-between gap-2">
+                <div className="flex min-w-0 items-end justify-between gap-2">
 
-                  <div>
-                    <p className="text-xs font-bold text-stone-900">
+                  <div className="min-w-0">
+                    <p className="truncate text-xs font-bold text-stone-900">
                       ₹
                       {Number(
                         order.total_amount || 0
@@ -214,3 +215,4 @@ export default function RecentOrders() {
     </section>
   );
 }
+

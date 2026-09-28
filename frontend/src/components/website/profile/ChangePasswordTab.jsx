@@ -60,9 +60,7 @@ export default function ChangePasswordTab() {
       const data = await response.json();
 
       if (data.success) {
-        alert(
-          data.message || "Password changed successfully"
-        );
+        alert(data.message || "Password changed successfully");
 
         // Clear form
         setPassword({
@@ -71,9 +69,7 @@ export default function ChangePasswordTab() {
           confirmPassword: "",
         });
       } else {
-        alert(
-          data.message || "Failed to change password"
-        );
+        alert(data.message || "Failed to change password");
       }
     } catch (error) {
       console.error("Change password error:", error);
@@ -85,32 +81,32 @@ export default function ChangePasswordTab() {
   };
 
   return (
-    <div className="w-full max-w-3xl">
-
+    <div className="w-full min-w-0 max-w-3xl">
       {/* Security Box */}
-      <div className="mb-5 flex items-center gap-3 rounded-xl border border-gray-200 bg-gray-50 p-4">
-
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-black text-white">
-          <Lock size={18} strokeWidth={1.8} />
+      <div className="mb-5 flex min-w-0 items-start gap-3 rounded-xl border border-gray-200 bg-gray-50 p-3 sm:items-center sm:p-4">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-black text-white sm:h-10 sm:w-10">
+          <Lock
+            size={17}
+            strokeWidth={1.8}
+            className="sm:h-[18px] sm:w-[18px]"
+          />
         </div>
 
-        <div>
+        <div className="min-w-0">
           <h3 className="text-sm font-bold text-gray-900">
             Account Security
           </h3>
 
-          <p className="mt-0.5 text-[11px] leading-4 text-gray-500">
+          <p className="mt-0.5 break-words text-[10px] leading-4 text-gray-500 sm:text-[11px]">
             Choose a strong password that you don't use anywhere else.
           </p>
         </div>
-
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-4">
-
+      <form onSubmit={handleSubmit} className="min-w-0 space-y-4">
         {/* Current Password */}
-        <div>
+        <div className="min-w-0">
           <label className="mb-1.5 block text-xs font-semibold text-gray-700">
             Current Password
           </label>
@@ -122,12 +118,12 @@ export default function ChangePasswordTab() {
             onChange={handleChange}
             placeholder="Enter current password"
             required
-            className="h-10 w-full rounded-lg border border-gray-200 bg-white px-3 text-xs text-gray-900 outline-none transition focus:border-black focus:ring-2 focus:ring-gray-100"
+            className="h-10 w-full min-w-0 rounded-lg border border-gray-200 bg-white px-3 text-xs text-gray-900 outline-none transition focus:border-black focus:ring-2 focus:ring-gray-100"
           />
         </div>
 
         {/* New Password */}
-        <div>
+        <div className="min-w-0">
           <label className="mb-1.5 block text-xs font-semibold text-gray-700">
             New Password
           </label>
@@ -140,7 +136,7 @@ export default function ChangePasswordTab() {
             placeholder="Enter new password"
             required
             minLength={6}
-            className="h-10 w-full rounded-lg border border-gray-200 bg-white px-3 text-xs text-gray-900 outline-none transition focus:border-black focus:ring-2 focus:ring-gray-100"
+            className="h-10 w-full min-w-0 rounded-lg border border-gray-200 bg-white px-3 text-xs text-gray-900 outline-none transition focus:border-black focus:ring-2 focus:ring-gray-100"
           />
 
           <p className="mt-1.5 text-[10px] text-gray-400">
@@ -149,7 +145,7 @@ export default function ChangePasswordTab() {
         </div>
 
         {/* Confirm Password */}
-        <div>
+        <div className="min-w-0">
           <label className="mb-1.5 block text-xs font-semibold text-gray-700">
             Confirm New Password
           </label>
@@ -162,24 +158,22 @@ export default function ChangePasswordTab() {
             placeholder="Confirm new password"
             required
             minLength={6}
-            className="h-10 w-full rounded-lg border border-gray-200 bg-white px-3 text-xs text-gray-900 outline-none transition focus:border-black focus:ring-2 focus:ring-gray-100"
+            className="h-10 w-full min-w-0 rounded-lg border border-gray-200 bg-white px-3 text-xs text-gray-900 outline-none transition focus:border-black focus:ring-2 focus:ring-gray-100"
           />
         </div>
 
         {/* Button */}
         <div className="border-t border-gray-100 pt-4">
-
           <button
             type="submit"
             disabled={loading}
-            className="h-10 rounded-lg bg-black px-5 text-xs font-semibold text-white transition hover:bg-gray-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+            className="h-10 w-full rounded-lg bg-black px-5 text-xs font-semibold text-white transition hover:bg-gray-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
             {loading ? "Changing..." : "Change Password"}
           </button>
-
         </div>
-
       </form>
     </div>
   );
 }
+

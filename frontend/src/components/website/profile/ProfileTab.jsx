@@ -96,37 +96,37 @@ export default function ProfileTab() {
   };
 
   return (
-    <div className="w-full max-w-3xl">
-
+    <div className="w-full min-w-0 max-w-3xl">
       {/* Profile Header */}
-      <div className="mb-5 flex items-center gap-3 rounded-xl border border-gray-200 bg-gray-50 p-4">
-        
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-black text-white">
-          <User size={19} strokeWidth={1.8} />
+      <div className="mb-5 flex min-w-0 items-start gap-3 rounded-xl border border-gray-200 bg-gray-50 p-3 sm:items-center sm:p-4">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-black text-white sm:h-10 sm:w-10">
+          <User
+            size={18}
+            strokeWidth={1.8}
+            className="sm:h-[19px] sm:w-[19px]"
+          />
         </div>
 
-        <div>
+        <div className="min-w-0">
           <h3 className="text-sm font-bold text-gray-900">
             Personal Information
           </h3>
 
-          <p className="mt-0.5 text-[11px] text-gray-500">
+          <p className="mt-0.5 break-words text-[10px] leading-4 text-gray-500 sm:text-[11px]">
             Keep your account details up to date
           </p>
         </div>
-
       </div>
 
       {/* Loading */}
       {loading ? (
-        <div className="rounded-xl border border-gray-200 bg-white p-5 text-center text-xs text-gray-500">
+        <div className="flex min-h-[100px] w-full items-center justify-center rounded-xl border border-gray-200 bg-white p-4 text-center text-xs text-gray-500 sm:min-h-[110px]">
           Loading profile...
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
-
+        <form onSubmit={handleSubmit} className="min-w-0 space-y-4">
           {/* Name */}
-          <div>
+          <div className="min-w-0">
             <label className="mb-1.5 block text-xs font-semibold text-gray-700">
               Full Name
             </label>
@@ -138,12 +138,12 @@ export default function ProfileTab() {
               onChange={handleChange}
               placeholder="Enter your name"
               required
-              className="h-10 w-full rounded-lg border border-gray-200 bg-white px-3 text-xs text-gray-900 outline-none transition focus:border-black focus:ring-2 focus:ring-gray-100"
+              className="h-10 w-full min-w-0 rounded-lg border border-gray-200 bg-white px-3 text-xs text-gray-900 outline-none transition focus:border-black focus:ring-2 focus:ring-gray-100"
             />
           </div>
 
           {/* Email */}
-          <div>
+          <div className="min-w-0">
             <label className="mb-1.5 block text-xs font-semibold text-gray-700">
               Email Address
             </label>
@@ -155,12 +155,12 @@ export default function ProfileTab() {
               onChange={handleChange}
               placeholder="Enter your email"
               required
-              className="h-10 w-full rounded-lg border border-gray-200 bg-white px-3 text-xs text-gray-900 outline-none transition focus:border-black focus:ring-2 focus:ring-gray-100"
+              className="h-10 w-full min-w-0 rounded-lg border border-gray-200 bg-white px-3 text-xs text-gray-900 outline-none transition focus:border-black focus:ring-2 focus:ring-gray-100"
             />
           </div>
 
           {/* Mobile */}
-          <div>
+          <div className="min-w-0">
             <label className="mb-1.5 block text-xs font-semibold text-gray-700">
               Mobile Number
             </label>
@@ -171,7 +171,7 @@ export default function ProfileTab() {
               value={profile.mobile}
               onChange={handleChange}
               placeholder="Enter mobile number"
-              className="h-10 w-full rounded-lg border border-gray-200 bg-white px-3 text-xs text-gray-900 outline-none transition focus:border-black focus:ring-2 focus:ring-gray-100"
+              className="h-10 w-full min-w-0 rounded-lg border border-gray-200 bg-white px-3 text-xs text-gray-900 outline-none transition focus:border-black focus:ring-2 focus:ring-gray-100"
             />
           </div>
 
@@ -180,14 +180,14 @@ export default function ProfileTab() {
             <button
               type="submit"
               disabled={saving}
-              className="h-10 rounded-lg bg-black px-5 text-xs font-semibold text-white transition hover:bg-gray-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+              className="h-10 w-full rounded-lg bg-black px-5 text-xs font-semibold text-white transition hover:bg-gray-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
             >
               {saving ? "Updating..." : "Update Profile"}
             </button>
           </div>
-
         </form>
       )}
     </div>
   );
 }
+

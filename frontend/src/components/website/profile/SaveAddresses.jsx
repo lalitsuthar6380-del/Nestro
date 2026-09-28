@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import {
   MapPin,
   Home,
@@ -304,32 +303,31 @@ export default function SavedAddresses({
   };
 
   return (
-    <section className="w-full rounded-2xl bg-white p-4 shadow-sm">
+    <section className="w-full min-w-0 rounded-2xl bg-white p-3 shadow-sm sm:p-4">
 
       {/* HEADER */}
 
-      <div className="mb-4 flex items-center justify-between gap-3">
+      <div className="mb-4 flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 
-        <div className="flex items-center gap-2.5">
-
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#5C4A3A] text-white">
+        <div className="flex min-w-0 items-center gap-2.5">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#5C4A3A] text-white sm:h-9 sm:w-9">
             <MapPin
-              size={16}
+              size={15}
               strokeWidth={1.8}
+              className="sm:h-4 sm:w-4"
             />
           </div>
 
-          <div>
-            <h2 className="text-sm font-semibold text-stone-900">
+          <div className="min-w-0">
+            <h2 className="truncate text-sm font-semibold text-stone-900">
               Saved Addresses
             </h2>
 
-            <p className="mt-0.5 text-[10px] text-stone-500">
+            <p className="mt-0.5 text-[10px] leading-4 text-stone-500">
               Manage your saved addresses
               for faster checkout.
             </p>
           </div>
-
         </div>
 
         {/* ADD ADDRESS */}
@@ -337,7 +335,7 @@ export default function SavedAddresses({
         <button
           type="button"
           onClick={handleAdd}
-          className="hidden h-9 items-center gap-1.5 rounded-lg border border-stone-300 px-3 text-[10px] font-semibold text-stone-700 transition hover:bg-stone-50 sm:inline-flex"
+          className="hidden h-9 shrink-0 items-center justify-center gap-1.5 rounded-lg border border-stone-300 px-3 text-[10px] font-semibold text-stone-700 transition hover:bg-stone-50 sm:inline-flex"
         >
           <Plus size={14} />
           Add Address
@@ -359,10 +357,10 @@ export default function SavedAddresses({
       {/* LOADING */}
 
       {loading && (
-        <div className="flex items-center justify-center py-8 text-xs text-stone-500">
+        <div className="flex min-h-[100px] items-center justify-center px-2 py-8 text-xs text-stone-500">
           <Loader2
             size={16}
-            className="mr-2 animate-spin"
+            className="mr-2 shrink-0 animate-spin"
           />
           Loading addresses...
         </div>
@@ -372,7 +370,7 @@ export default function SavedAddresses({
 
       {!loading &&
         addresses.length === 0 && (
-          <div className="rounded-xl border border-dashed border-stone-200 py-8 text-center">
+          <div className="rounded-xl border border-dashed border-stone-200 px-3 py-7 text-center sm:py-8">
 
             <MapPin
               size={26}
@@ -404,7 +402,7 @@ export default function SavedAddresses({
 
       {!loading &&
         addresses.length > 0 && (
-          <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+          <div className="grid min-w-0 grid-cols-1 gap-2.5 sm:grid-cols-2">
 
             {addresses.map(
               (address, index) => {
@@ -416,7 +414,7 @@ export default function SavedAddresses({
                 return (
                   <div
                     key={address._id}
-                    className={`flex flex-col gap-3 rounded-xl border p-3 transition ${
+                    className={`flex min-w-0 flex-col gap-3 rounded-xl border p-3 transition ${
                       address.isDefault
                         ? "border-[#5C4A3A] bg-stone-50"
                         : "border-stone-200 bg-white"
@@ -425,7 +423,7 @@ export default function SavedAddresses({
 
                     {/* CARD HEADER */}
 
-                    <div className="flex items-center justify-between">
+                    <div className="flex min-w-0 items-center justify-between gap-2">
 
                       <div className="flex min-w-0 items-center gap-2">
 
@@ -442,17 +440,19 @@ export default function SavedAddresses({
                           />
                         </div>
 
-                        <span className="text-xs font-semibold text-stone-900">
-                          {index === 0
-                            ? "Home"
-                            : "Address"}
-                        </span>
-
-                        {address.isDefault && (
-                          <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[8px] font-semibold text-amber-800">
-                            Default
+                        <div className="flex min-w-0 flex-wrap items-center gap-1.5">
+                          <span className="text-xs font-semibold text-stone-900">
+                            {index === 0
+                              ? "Home"
+                              : "Address"}
                           </span>
-                        )}
+
+                          {address.isDefault && (
+                            <span className="shrink-0 rounded-full bg-amber-100 px-2 py-0.5 text-[8px] font-semibold text-amber-800">
+                              Default
+                            </span>
+                          )}
+                        </div>
 
                       </div>
 
@@ -491,27 +491,27 @@ export default function SavedAddresses({
 
                     {/* ADDRESS DETAILS */}
 
-                    <div className="text-[10px] leading-4 text-stone-600">
+                    <div className="min-w-0 break-words text-[10px] leading-4 text-stone-600">
 
-                      <p className="font-semibold text-stone-800">
+                      <p className="break-words font-semibold text-stone-800">
                         {address.fullName}
                       </p>
 
-                      <p>
+                      <p className="break-words">
                         {address.mobile}
                       </p>
 
-                      <p className="mt-1">
+                      <p className="mt-1 break-words">
                         {address.addressLine}
                       </p>
 
-                      <p>
+                      <p className="break-words">
                         {address.city},{" "}
                         {address.state} -{" "}
                         {address.pincode}
                       </p>
 
-                      <p>
+                      <p className="break-words">
                         {address.country}
                       </p>
 
@@ -519,7 +519,7 @@ export default function SavedAddresses({
 
                     {/* ACTIONS */}
 
-                    <div className="flex items-center gap-4 border-t border-stone-100 pt-2">
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-stone-100 pt-2">
 
                       {/* EDIT */}
 
@@ -531,7 +531,7 @@ export default function SavedAddresses({
                         disabled={
                           actionLoading
                         }
-                        className="inline-flex items-center gap-1 text-[10px] font-medium text-stone-700 hover:text-black disabled:opacity-50"
+                        className="inline-flex min-h-[28px] items-center gap-1 text-[10px] font-medium text-stone-700 hover:text-black disabled:opacity-50"
                       >
                         <Pencil size={12} />
                         Edit
@@ -549,7 +549,7 @@ export default function SavedAddresses({
                         disabled={
                           actionLoading
                         }
-                        className="inline-flex items-center gap-1 text-[10px] font-medium text-red-600 hover:text-red-700 disabled:opacity-50"
+                        className="inline-flex min-h-[28px] items-center gap-1 text-[10px] font-medium text-red-600 hover:text-red-700 disabled:opacity-50"
                       >
                         <Trash2 size={12} />
                         Delete
@@ -568,10 +568,9 @@ export default function SavedAddresses({
       {/* ADD / EDIT FORM */}
 
       {showForm && (
-        <div className="mt-5 border-t border-stone-200 pt-5">
+        <div className="mt-5 min-w-0 border-t border-stone-200 pt-5">
 
           <div className="mb-4">
-
             <h3 className="text-sm font-semibold text-stone-900">
               {editingAddress
                 ? "Edit Address"
@@ -582,17 +581,16 @@ export default function SavedAddresses({
               Enter your delivery address
               details.
             </p>
-
           </div>
 
           <form
             onSubmit={handleSubmit}
-            className="grid grid-cols-1 gap-3 md:grid-cols-2"
+            className="grid min-w-0 grid-cols-1 gap-3 md:grid-cols-2"
           >
 
             {/* FULL NAME */}
 
-            <div>
+            <div className="min-w-0">
               <label className="mb-1 block text-[10px] font-semibold text-stone-700">
                 Full Name
               </label>
@@ -604,13 +602,13 @@ export default function SavedAddresses({
                 onChange={handleChange}
                 required
                 placeholder="Enter full name"
-                className="h-9 w-full rounded-lg border border-stone-200 px-3 text-[10px] outline-none focus:border-[#5C4A3A]"
+                className="h-9 w-full min-w-0 rounded-lg border border-stone-200 px-3 text-[10px] outline-none focus:border-[#5C4A3A]"
               />
             </div>
 
             {/* MOBILE */}
 
-            <div>
+            <div className="min-w-0">
               <label className="mb-1 block text-[10px] font-semibold text-stone-700">
                 Mobile
               </label>
@@ -622,13 +620,13 @@ export default function SavedAddresses({
                 onChange={handleChange}
                 required
                 placeholder="Enter mobile number"
-                className="h-9 w-full rounded-lg border border-stone-200 px-3 text-[10px] outline-none focus:border-[#5C4A3A]"
+                className="h-9 w-full min-w-0 rounded-lg border border-stone-200 px-3 text-[10px] outline-none focus:border-[#5C4A3A]"
               />
             </div>
 
             {/* PINCODE */}
 
-            <div>
+            <div className="min-w-0">
               <label className="mb-1 block text-[10px] font-semibold text-stone-700">
                 Pincode
               </label>
@@ -640,13 +638,13 @@ export default function SavedAddresses({
                 onChange={handleChange}
                 required
                 placeholder="Enter pincode"
-                className="h-9 w-full rounded-lg border border-stone-200 px-3 text-[10px] outline-none focus:border-[#5C4A3A]"
+                className="h-9 w-full min-w-0 rounded-lg border border-stone-200 px-3 text-[10px] outline-none focus:border-[#5C4A3A]"
               />
             </div>
 
             {/* ADDRESS */}
 
-            <div>
+            <div className="min-w-0">
               <label className="mb-1 block text-[10px] font-semibold text-stone-700">
                 Address
               </label>
@@ -658,13 +656,13 @@ export default function SavedAddresses({
                 onChange={handleChange}
                 required
                 placeholder="House no, street, area"
-                className="h-9 w-full rounded-lg border border-stone-200 px-3 text-[10px] outline-none focus:border-[#5C4A3A]"
+                className="h-9 w-full min-w-0 rounded-lg border border-stone-200 px-3 text-[10px] outline-none focus:border-[#5C4A3A]"
               />
             </div>
 
             {/* CITY */}
 
-            <div>
+            <div className="min-w-0">
               <label className="mb-1 block text-[10px] font-semibold text-stone-700">
                 City
               </label>
@@ -676,13 +674,13 @@ export default function SavedAddresses({
                 onChange={handleChange}
                 required
                 placeholder="Enter city"
-                className="h-9 w-full rounded-lg border border-stone-200 px-3 text-[10px] outline-none focus:border-[#5C4A3A]"
+                className="h-9 w-full min-w-0 rounded-lg border border-stone-200 px-3 text-[10px] outline-none focus:border-[#5C4A3A]"
               />
             </div>
 
             {/* STATE */}
 
-            <div>
+            <div className="min-w-0">
               <label className="mb-1 block text-[10px] font-semibold text-stone-700">
                 State
               </label>
@@ -694,13 +692,13 @@ export default function SavedAddresses({
                 onChange={handleChange}
                 required
                 placeholder="Enter state"
-                className="h-9 w-full rounded-lg border border-stone-200 px-3 text-[10px] outline-none focus:border-[#5C4A3A]"
+                className="h-9 w-full min-w-0 rounded-lg border border-stone-200 px-3 text-[10px] outline-none focus:border-[#5C4A3A]"
               />
             </div>
 
             {/* COUNTRY */}
 
-            <div>
+            <div className="min-w-0">
               <label className="mb-1 block text-[10px] font-semibold text-stone-700">
                 Country
               </label>
@@ -710,38 +708,35 @@ export default function SavedAddresses({
                 name="country"
                 value={form.country}
                 onChange={handleChange}
-                className="h-9 w-full rounded-lg border border-stone-200 px-3 text-[10px] outline-none focus:border-[#5C4A3A]"
+                className="h-9 w-full min-w-0 rounded-lg border border-stone-200 px-3 text-[10px] outline-none focus:border-[#5C4A3A]"
               />
             </div>
 
             {/* DEFAULT */}
 
-            <div className="flex items-center gap-2 md:pt-5">
-
+            <div className="flex min-w-0 items-center gap-2 md:pt-5">
               <input
                 type="checkbox"
                 name="isDefault"
                 checked={form.isDefault}
                 onChange={handleChange}
-                className="h-3.5 w-3.5 accent-[#5C4A3A]"
+                className="h-3.5 w-3.5 shrink-0 accent-[#5C4A3A]"
               />
 
               <label className="text-[10px] text-stone-700">
                 Make this my default address
               </label>
-
             </div>
 
             {/* BUTTONS */}
 
-            <div className="flex items-center gap-2 pt-2 md:col-span-2">
+            <div className="flex w-full flex-col gap-2 pt-2 sm:w-auto sm:flex-row sm:items-center md:col-span-2">
 
               <button
                 type="submit"
                 disabled={actionLoading}
-                className="inline-flex h-9 items-center justify-center gap-1.5 rounded-lg bg-[#5C4A3A] px-4 text-[10px] font-semibold text-white transition hover:bg-[#49392d] disabled:opacity-60"
+                className="inline-flex h-9 w-full items-center justify-center gap-1.5 rounded-lg bg-[#5C4A3A] px-4 text-[10px] font-semibold text-white transition hover:bg-[#49392d] disabled:opacity-60 sm:w-auto"
               >
-
                 {actionLoading && (
                   <Loader2
                     size={13}
@@ -752,7 +747,6 @@ export default function SavedAddresses({
                 {editingAddress
                   ? "Update Address"
                   : "Save Address"}
-
               </button>
 
               <button
@@ -761,7 +755,7 @@ export default function SavedAddresses({
                   setShowForm(false);
                   setEditingAddress(null);
                 }}
-                className="h-9 rounded-lg border border-stone-200 px-4 text-[10px] font-semibold text-stone-700 transition hover:bg-stone-50"
+                className="h-9 w-full rounded-lg border border-stone-200 px-4 text-[10px] font-semibold text-stone-700 transition hover:bg-stone-50 sm:w-auto"
               >
                 Cancel
               </button>
@@ -776,3 +770,4 @@ export default function SavedAddresses({
     </section>
   );
 }
+

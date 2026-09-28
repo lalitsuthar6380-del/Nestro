@@ -106,22 +106,22 @@ export default function ProfileInformation() {
   // =========================
   if (loading) {
     return (
-      <section className="flex min-h-[300px] items-center justify-center rounded-2xl bg-white shadow-sm">
+      <section className="flex min-h-[240px] w-full items-center justify-center rounded-2xl bg-white shadow-sm sm:min-h-[280px] md:min-h-[300px]">
         <Loader2
-          size={24}
-          className="animate-spin text-[#5C4A3A]"
+          size={22}
+          className="animate-spin text-[#5C4A3A] sm:h-6 sm:w-6"
         />
       </section>
     );
   }
 
   return (
-    <section className="w-full rounded-2xl bg-white p-4 shadow-sm md:p-5">
+    <section className="w-full min-w-0 rounded-2xl bg-white p-3 shadow-sm sm:p-4 md:p-5">
 
       {/* =========================
           HEADER
       ========================= */}
-      <div className="mb-5 flex items-center gap-2.5">
+      <div className="mb-5 flex min-w-0 items-start gap-2.5 sm:items-center">
 
         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#5C4A3A] text-white">
           <User
@@ -135,7 +135,7 @@ export default function ProfileInformation() {
             Profile Information
           </h2>
 
-          <p className="mt-0.5 text-[11px] leading-tight text-stone-500">
+          <p className="mt-0.5 break-words text-[10px] leading-4 text-stone-500 sm:text-[11px]">
             Keep your personal information up to date.
           </p>
         </div>
@@ -145,9 +145,9 @@ export default function ProfileInformation() {
       {/* =========================
           FORM
       ========================= */}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="min-w-0">
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid min-w-0 grid-cols-1 gap-3.5 sm:gap-4 md:grid-cols-2">
 
           {/* FULL NAME */}
           <Field label="Full Name">
@@ -157,7 +157,7 @@ export default function ProfileInformation() {
               onChange={handleChange("fullName")}
               placeholder="Enter your full name"
               required
-              className="h-10 w-full rounded-lg border border-stone-300 bg-white px-3 text-xs text-stone-900 outline-none transition focus:border-[#5C4A3A] focus:ring-1 focus:ring-[#5C4A3A]/20"
+              className="h-10 w-full min-w-0 rounded-lg border border-stone-300 bg-white px-3 text-xs text-stone-900 outline-none transition focus:border-[#5C4A3A] focus:ring-1 focus:ring-[#5C4A3A]/20"
             />
           </Field>
 
@@ -167,7 +167,7 @@ export default function ProfileInformation() {
               type="email"
               value={form.email}
               disabled
-              className="h-10 w-full cursor-not-allowed rounded-lg border border-stone-200 bg-stone-100 px-3 text-xs text-stone-500"
+              className="h-10 w-full min-w-0 cursor-not-allowed rounded-lg border border-stone-200 bg-stone-100 px-3 text-xs text-stone-500"
             />
           </Field>
 
@@ -178,7 +178,7 @@ export default function ProfileInformation() {
               value={form.phone}
               onChange={handleChange("phone")}
               placeholder="Enter phone number"
-              className="h-10 w-full rounded-lg border border-stone-300 bg-white px-3 text-xs text-stone-900 outline-none transition focus:border-[#5C4A3A] focus:ring-1 focus:ring-[#5C4A3A]/20"
+              className="h-10 w-full min-w-0 rounded-lg border border-stone-300 bg-white px-3 text-xs text-stone-900 outline-none transition focus:border-[#5C4A3A] focus:ring-1 focus:ring-[#5C4A3A]/20"
             />
           </Field>
 
@@ -187,7 +187,7 @@ export default function ProfileInformation() {
             <button
               type="submit"
               disabled={saving}
-              className="h-10 w-full rounded-lg bg-stone-900 px-4 text-xs font-medium text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-60 md:w-auto"
+              className="h-10 w-full rounded-lg bg-stone-900 px-4 text-xs font-medium text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
             >
               {saving ? "Saving..." : "Save Changes"}
             </button>
@@ -205,7 +205,7 @@ export default function ProfileInformation() {
 // =========================
 function Field({ label, children }) {
   return (
-    <label className="block">
+    <label className="block min-w-0">
       <span className="mb-1.5 block text-[11px] font-medium text-stone-600">
         {label}
       </span>
@@ -214,3 +214,4 @@ function Field({ label, children }) {
     </label>
   );
 }
+
