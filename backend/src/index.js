@@ -16,14 +16,8 @@ dotenv.config();
 
 const app = express();
 
-// =========================
-// DATABASE
-// =========================
 connectDB();
 
-// =========================
-// MIDDLEWARE
-// =========================
 app.use(
   cors({
     origin: [
@@ -38,16 +32,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// =========================
-// TEST ROUTE
-// =========================
 app.get("/", (req, res) => {
   res.status(200).send("Backend is Running...");
 });
 
-// =========================
-// API ROUTES
-// =========================
 app.use("/api/category", categoryRouter);
 app.use("/api/room-type", roomRouter);
 app.use("/api/product", productRouter);
@@ -55,9 +43,6 @@ app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
 
-// =========================
-// GLOBAL ERROR HANDLER
-// =========================
 app.use((err, req, res, next) => {
   console.error("Unhandled error:", err?.message || err);
 
@@ -67,9 +52,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-// =========================
-// SERVER
-// =========================
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, "0.0.0.0", () => {
