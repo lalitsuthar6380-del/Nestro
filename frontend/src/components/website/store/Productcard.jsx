@@ -33,7 +33,7 @@ function getBadgeStyle(badge) {
 
 export default function ProductCard({
   href = "/product",
-  thumbnail,
+    thumbnail,
   category,
   name,
   rating = 5,
