@@ -14,7 +14,7 @@ export const sync = async (req, res) => {
         const userId = req.user._id;
         const { items } = req.body;
 
-        const cartItems = JSON.parse(items);
+        const cartItems = typeof items === "string" ? JSON.parse(items) : items;
 
         if (!Array.isArray(cartItems)) {
             return sendBadRequest(res, "Invalid cart items");
@@ -30,7 +30,11 @@ export const sync = async (req, res) => {
                 items: cartItems
             });
 
-            return sendCreated(res, userCart);
+            await userCart.populate(
+                "items.productId",
+                "_id title slug price salePrice thumbnail"
+            );
+            return sendCreated(res, userCart, "Cart created successfully");
         }
 
         // Cart already exists

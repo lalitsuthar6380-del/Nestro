@@ -34,7 +34,7 @@ router.get("/:id", readById);
 router.post(
     "/create",
     protect,
-    authorized(["admin", "superadmin"]),
+    authorized(["admin", "superAdmin"]),
     upload.single("image"),
     create
 );
@@ -43,7 +43,7 @@ router.post(
 router.patch(
     "/status-update/:id",
     protect,
-    authorized(["admin", "superadmin"]),
+    authorized(["admin", "superAdmin"]),
     updateStatus
 );
 
@@ -51,7 +51,7 @@ router.patch(
 router.put(
     "/edit/:id",
     protect,
-    authorized(["admin", "superadmin"]),
+    authorized(["admin", "superAdmin"]),
     upload.single("image"),
     edit
 );
@@ -60,7 +60,7 @@ router.put(
 router.delete(
     "/delete/:id",
     protect,
-    authorized(["admin", "superadmin"]),
+    authorized(["admin", "superAdmin"]),
     deleteById
 );
 

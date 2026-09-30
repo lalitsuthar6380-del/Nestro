@@ -1,3 +1,4 @@
+import "dotenv/config";
 import UserModel from "../models/user.model.js";
 import Cryptr from "cryptr";
 

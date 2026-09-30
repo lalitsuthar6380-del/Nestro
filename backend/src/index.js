@@ -1,21 +1,17 @@
+import "dotenv/config";
 import express from "express";
-import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import connectDB from "./confing/db.js";
 import categoryRouter from "./routers/category.Router.js";
-import roomRouter from "./routers/room.router.js";
+import roomRouter from "./routers/room.Router.js";
 import productRouter from "./routers/product.Router.js";
 import userRouter from "./routers/user.Router.js";
 import cartRouter from "./routers/cart.router.js";
 import orderRouter from "./routers/order.router.js";
 
-dotenv.config();
-
 const app = express();
-
-connectDB();
 
 // CORS
 app.use(
@@ -60,6 +56,16 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server Running on Port ${PORT}`);
-});
+const startServer = async () => {
+  try {
+    await connectDB();
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server Running on Port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Failed to start backend:", error.message);
+    process.exit(1);
+  }
+};
+
+startServer();

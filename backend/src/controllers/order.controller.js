@@ -1,3 +1,4 @@
+import "dotenv/config";
 import cartModel from "../models/cart.model.js";
 import OrderModel from "../models/order.model.js";
 import mongoose from "mongoose";
