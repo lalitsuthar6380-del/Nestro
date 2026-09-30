@@ -4,11 +4,10 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import connectDB from "./confing/db.js";
-
-import categoryRouter from "./routers/category.Router.js";
+import categoryRouter from "./routers/category.router.js";
 import roomRouter from "./routers/room.Router.js";
-import productRouter from "./routers/product.Router.js";
-import userRouter from "./routers/user.Router.js";
+import productRouter from "./routers/product.router.js";
+import userRouter from "./routers/user.router.js";
 import cartRouter from "./routers/cart.router.js";
 import orderRouter from "./routers/order.router.js";
 

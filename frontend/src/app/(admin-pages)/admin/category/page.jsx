@@ -7,7 +7,6 @@ import DeleteButton from "@/components/admin/DeleteButton";
 import EditButton from "@/components/admin/EditButton";
 import { fetchCategory } from "@/api/api";
 
-
 export default async function Page() {
     const { success, data,message } = await fetchCategory();
 
