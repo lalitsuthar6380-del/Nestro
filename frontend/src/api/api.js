@@ -52,7 +52,7 @@ export const fetchProductsById = async (id) => {
 
 export const fetchCategory = async () => {
   try {
-    const response = await client.get("/category");
+    const response = await client.get("category");
 
     console.log("Category Response:", response.data);
 
