@@ -4,10 +4,10 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import connectDB from "./confing/db.js";
-import categoryRouter from "./routers/category.router.js";
-import roomRouter from "./routers/room.Router.js";
-import productRouter from "./routers/product.router.js";
-import userRouter from "./routers/user.router.js";
+import categoryRouter from "./routers/category.Router.js";
+import roomRouter from "./routers/room.router.js";
+import productRouter from "./routers/product.Router.js";
+import userRouter from "./routers/user.Router.js";
 import cartRouter from "./routers/cart.router.js";
 import orderRouter from "./routers/order.router.js";
 
@@ -17,6 +17,7 @@ const app = express();
 
 connectDB();
 
+// CORS
 app.use(
   cors({
     origin: [
@@ -24,17 +25,22 @@ app.use(
       process.env.FRONTEND_URL,
     ].filter(Boolean),
     credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+// Test route
 app.get("/", (req, res) => {
   res.status(200).send("Backend is Running...");
 });
 
+// API Routes
 app.use("/api/category", categoryRouter);
 app.use("/api/room-type", roomRouter);
 app.use("/api/product", productRouter);
@@ -42,6 +48,7 @@ app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
 
+// Error handler
 app.use((err, req, res, next) => {
   console.error("Unhandled error:", err?.message || err);
 

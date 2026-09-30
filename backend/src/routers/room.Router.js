@@ -65,4 +65,4 @@ router.delete(
 );
 
 
-export default roomRouter;
+export default router;

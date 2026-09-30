@@ -1,11 +1,11 @@
 import axios from "axios";
 
-// Apne backend ke port ke hisab se URL likho.
-// Agar backend 5000 par chal raha hai to ye use karo.
 const client = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api/",
+  baseURL:
+    process.env.NEXT_PUBLIC_API_URL ||
+    "https://your-backend.vercel.app/api/",
   timeout: 10000,
-  withCredentials: true 
+  withCredentials: true,
 });
 
 console.log("Axios Base URL:", client.defaults.baseURL);
