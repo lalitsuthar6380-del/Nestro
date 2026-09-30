@@ -1,14 +1,16 @@
 import axios from "axios";
 
+const apiBaseUrl = (
+  process.env.NEXT_PUBLIC_API_URL ||
+  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  "http://localhost:5000/api/"
+).replace(/\/+$/, "") + "/";
+
 const client = axios.create({
-  baseURL:
-    process.env.NEXT_PUBLIC_API_URL ||
-    "https://your-backend.vercel.app/api/",
+  baseURL: apiBaseUrl,
   timeout: 10000,
   withCredentials: true,
 });
-
-console.log("Axios Base URL:", client.defaults.baseURL);
 
 const createSlug = (text = "") => {
   return text
