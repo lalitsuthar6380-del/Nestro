@@ -14,12 +14,25 @@ import orderRouter from "./routers/order.router.js";
 const app = express();
 
 // CORS
+const allowedOrigins = new Set(
+  [
+    "http://localhost:3000",
+    "https://nestro2.vercel.app",
+    ...(process.env.FRONTEND_URL || "").split(","),
+  ]
+    .map((origin) => origin.trim().replace(/\/$/, ""))
+    .filter(Boolean)
+);
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      process.env.FRONTEND_URL,
-    ].filter(Boolean),
+    origin(origin, callback) {
+      // Allow requests without an Origin header (health checks, curl, etc.).
+      if (!origin || allowedOrigins.has(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error(`Origin not allowed by CORS: ${origin}`));
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
