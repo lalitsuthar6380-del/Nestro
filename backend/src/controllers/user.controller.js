@@ -64,8 +64,8 @@ export const register = async (req, res) => {
       email: email,
     });
   } catch (error) {
-    console.log(error);
-    return sendServerError(res);
+    console.error("Registration failed:", error?.message || error);
+    return sendServerError(res, error);
   }
 };
 

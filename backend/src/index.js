@@ -18,6 +18,8 @@ const allowedOrigins = new Set(
   [
     "http://localhost:3000",
     "https://nestro2.vercel.app",
+    "https://nestro-gules.vercel.app",
+    "https://nestro-i4l1.vercel.app",
     ...(process.env.FRONTEND_URL || "").split(","),
   ]
     .map((origin) => origin.trim().replace(/\/$/, ""))
